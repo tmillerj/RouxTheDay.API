@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.API", "Recipes.API\Recipes.API.csproj", "{6D12BBDF-1924-47E9-9C4D-27290225FA33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.API.Domain", "Recipes.API.Domain\Recipes.API.Domain.csproj", "{C8B58972-FB6A-42A6-B672-0555164BFD35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.API.Data", "Recipes.API.Data\Recipes.API.Data.csproj", "{A6DF50C5-B202-4F4F-98AC-F849E3DDFBFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D12BBDF-1924-47E9-9C4D-27290225FA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D12BBDF-1924-47E9-9C4D-27290225FA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D12BBDF-1924-47E9-9C4D-27290225FA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D12BBDF-1924-47E9-9C4D-27290225FA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B58972-FB6A-42A6-B672-0555164BFD35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B58972-FB6A-42A6-B672-0555164BFD35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B58972-FB6A-42A6-B672-0555164BFD35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B58972-FB6A-42A6-B672-0555164BFD35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6DF50C5-B202-4F4F-98AC-F849E3DDFBFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6DF50C5-B202-4F4F-98AC-F849E3DDFBFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6DF50C5-B202-4F4F-98AC-F849E3DDFBFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6DF50C5-B202-4F4F-98AC-F849E3DDFBFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
