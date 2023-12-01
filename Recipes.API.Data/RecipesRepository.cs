@@ -7,7 +7,7 @@ using Supabase;
 
 public interface IRecipesRepository
 {
-    Task<ModeledResponse<Recipe>> GetRecipes();
+    Task<List<Recipe>> GetRecipes();
     Task<Recipe> GetRecipeById(int recipeId);
     Task Save(Recipe recipe);
     Task Update(int recipeId);
@@ -23,12 +23,14 @@ public class RecipesRepository : IRecipesRepository
         _client = client;
     }
     
-    public async Task<ModeledResponse<Recipe>> GetRecipes()
+    public async Task<List<Recipe>> GetRecipes()
     {
-        return await _client.From<Recipe>()
+        var recipes = await _client.From<Recipe>()
             .Select(x => new object[] { x.CreatedAt})
             .Order(r => r.CreatedAt, Constants.Ordering.Descending)
             .Get().ConfigureAwait(false);
+
+        return recipes.Models;
     }
 
     public async Task<Recipe> GetRecipeById(int recipeId)
