@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using Recipes.API.Domain;
 using Recipes.API.Domain.DTO;
 
@@ -16,8 +17,17 @@ public class RecipeController : ControllerBase
     }
 
     [HttpGet]
+    [ApiVersion("1.0")]
     public async Task<IEnumerable<RecipeDTO>> GetRecipes()
     {
         return await _recipeService.GetRecipes();
+    }
+    
+    //GET api/v1.0/recipes/{id}
+    [HttpGet("{id}")]
+    [ApiVersion("1.0")]
+    public async Task<ActionResult<RecipeDTO>> Get(int id)
+    {
+        return await _recipeService.GetRecipeById(id);
     }
 }

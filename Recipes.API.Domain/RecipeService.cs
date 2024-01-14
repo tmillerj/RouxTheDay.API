@@ -8,6 +8,7 @@ namespace Recipes.API.Domain;
 public interface IRecipeService
 {
     Task<IEnumerable<RecipeDTO>> GetRecipes();
+    Task<RecipeDTO> GetRecipeById(int id);
 }
 
 public class RecipeService
@@ -23,8 +24,11 @@ public class RecipeService
 
     public async Task<IEnumerable<RecipeDTO>> GetRecipes()
     {
-        List<Recipe> recipes =  await _repository.GetRecipes();
+        return _mapper.Map<List<Recipe>, List<RecipeDTO>>(await _repository.GetRecipes());
+    }
 
-        return recipes.Any() ? _mapper.Map<List<Recipe>, List<RecipeDTO>>(recipes) : null;
+    public async Task<RecipeDTO> GetRecipeById(int id)
+    {
+        return _mapper.Map<Recipe, RecipeDTO>(await _repository.GetRecipeById(id));
     }
 }
