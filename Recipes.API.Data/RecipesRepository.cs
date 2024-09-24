@@ -1,9 +1,8 @@
-﻿using Postgrest;
-using Postgrest.Responses;
+﻿using Supabase.Postgrest;
+using Supabase.Postgrest.Responses;
 using Recipes.API.Data.Entities;
 
 namespace Recipes.API.Data;
-using Supabase;
 
 public interface IRecipesRepository
 {
@@ -18,16 +17,15 @@ public class RecipesRepository : IRecipesRepository
 {
     private readonly Client _client;
 
-    public RecipesRepository(Supabase.Client client)
+    public RecipesRepository(Supabase.Postgrest.Client client)
     {
         _client = client;
     }
     
     public async Task<List<Recipe>> GetRecipes()
     {
-        var recipes = await _client.From<Recipe>()
-            .Select(x => new object[] { x.CreatedAt})
-            .Order(r => r.CreatedAt, Constants.Ordering.Descending)
+        var recipes = await _client
+            .Table<Recipe>()
             .Get().ConfigureAwait(false);
 
         return recipes.Models;
@@ -35,7 +33,7 @@ public class RecipesRepository : IRecipesRepository
 
     public async Task<Recipe> GetRecipeById(int recipeId)
     {
-        var response = await _client.From<Recipe>()
+        var response = await _client.Table<Recipe>()
             .Where(r => r.RecipeId == recipeId)
             .Get();
         return response.Model;

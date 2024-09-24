@@ -1,21 +1,29 @@
-using Microsoft.AspNetCore.Builder.Extensions;
-using Supabase;
+using Recipes.API.Data;
+using Recipes.API.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
-var url = Environment.GetEnvironmentVariable("SUPABASE_URL");
-var key = Environment.GetEnvironmentVariable("SUPABASE_KEY");
-var options = new SupabaseOptions()
-{
-    AutoRefreshToken = true,
-    AutoConnectRealtime = true
-};
+var url = "https://lghcxzlzzqpmehtjjmuz.supabase.co";
+var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnaGN4emx6enFwbWVodGpqbXV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODM3MzQ5MzcsImV4cCI6MTk5OTMxMDkzN30.jDYnShnI_gKSI_xrz155Qbt95M0CpKs-JKyxB9leQus";
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddApiVersioning();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton(provider => new Supabase.Client(url, key, options));
+builder.Services.AddSingleton<Supabase.Gotrue.Client>(
+    provider => new Supabase.Gotrue.Client(new Supabase.Gotrue.ClientOptions
+    {
+        Url = url,
+        Headers = new Dictionary<string, string>
+        {
+            {"apikey", key}
+        }
+    }));
+builder.Services.AddSingleton<IRecipesRepository, RecipesRepository>();
+builder.Services.AddSingleton<IRecipeService, RecipeService>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

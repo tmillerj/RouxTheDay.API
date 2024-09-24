@@ -11,7 +11,7 @@ public interface IRecipeService
     Task<RecipeDTO> GetRecipeById(int id);
 }
 
-public class RecipeService
+public class RecipeService : IRecipeService
 {
     private readonly IRecipesRepository _repository;
     private readonly IMapper _mapper;

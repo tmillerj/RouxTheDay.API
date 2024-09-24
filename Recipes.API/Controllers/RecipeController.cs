@@ -16,6 +16,7 @@ public class RecipeController : ControllerBase
         _recipeService = recipeService;
     }
 
+    //GET api/v1.0/recipes
     [HttpGet]
     [ApiVersion("1.0")]
     public async Task<IEnumerable<RecipeDTO>> GetRecipes()
